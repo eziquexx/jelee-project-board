@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>메인 페이지</title>
+<title>커뮤니티 게시판 목록</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -26,8 +26,16 @@
 </header>
 
 <div class="container">
-	<h1>메인 페이지</h1>
+	<h1 th:text="${#strings.toUpperCase(category)} + ' List Page'">Detail Page</h1>
+	<h4 th:text="'Category: ' + ${category}"></h4>
+	<a th:href="@{/}">home</a>
+	
+	<h1 th:text="${category} + ' 게시판 목록'"></h1>
+	<div id="loading_id">loading... 로딩중...</div>
+	<div id="error_id">error... 에러 발생...</div>
+	<ul id="boardList_id"></ul>
 </div>
 
+<script th:src="@{/js/boardList-fetch.js}"></script>
 </body>
 </html>

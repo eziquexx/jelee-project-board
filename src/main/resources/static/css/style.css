@@ -1,1 +1,68 @@
 @charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+#header {
+  width: 100%;
+  background-color: salmon;
+}
+#header .container {
+  display: flex;
+  justify-content: space-between;
+}
+#header .container .logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.7;
+}
+#header .container #nav {
+  display: flex;
+}
+#header .container #nav .gnb {
+  display: flex;
+  margin-right: 30px;
+  line-height: 2.3;
+}
+#header .container #nav .gnb li:not(:last-child) {
+  margin-right: 16px;
+}
+#header .container #nav .authBtn {
+  display: flex; 
+}
+#header .container #nav .authBtn button {
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: rgb(211, 83, 69);
+  color: #fff;
+  transition: background-color ease 0.3s;
+}
+#header .container #nav .authBtn button:hover {
+  background-color: rgb(157, 59, 48);
+}
+#header .container #nav .authBtn button:first-child {
+  margin-right: 8px;
+}
+
+#header a {
+  color: #fff;
+  text-decoration: none;
+  transition: color ease 0.3s;
+}
+#header a:hover {
+  color: rgb(149, 59, 49);
+}
