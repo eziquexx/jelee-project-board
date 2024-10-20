@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jelee.board.model.Board;
 import com.jelee.board.service.BoardService;
 
@@ -17,6 +19,12 @@ import com.jelee.board.service.BoardService;
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
+	
+	// board all
+	@GetMapping
+	public List<Board> getBoardListAllLimit20() {
+		return boardService.getBoardListAllLimit20();
+	}
 	
 	// community detail
 	@GetMapping("/{category}/{id}")

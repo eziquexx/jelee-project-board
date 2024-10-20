@@ -13,6 +13,7 @@
 		<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
 		<nav id="nav">
 		  <ul class="gnb">
+		  	<li><a th:href="@{/}">홈</a></li>
 		    <li><a th:href="@{/board/community}">자유게시판</a></li>
 		    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
 		    <li><a th:href="@{/board/study}">공부게시판</a></li>
@@ -23,11 +24,39 @@
 		  </div>
 		</nav>
 	</div>
-</header>
+</header> <!-- header end -->
 
+
+
+<!-- container -->
 <div class="container">
-	<h1>메인 페이지</h1>
-</div>
+  <h1>메인 페이지</h1>
+  <div class="fetchStatus">
+	  <div id="loading_id">loading... 로딩중...</div>
+		<div id="error_id">error... 에러 발생...</div>
+  </div>
+	
+	
+	<div id="viewContents_id">
+	  <div class="tableWrap">
+	    <h3 class="tableWrapTitle">최근 게시글</h3>
+	    <table class="table">
+	      <thead>
+	        <tr>
+	          <th>분류</th>
+	          <th>제목</th>
+	          <th>작성자</th>
+	          <th>작성일</th>
+	        </tr>
+	      </thead>
+	      <tbody id ="postsLatestList_id">
+	      </tbody>
+	    </table>
+	  </div> <!-- tableWrap end -->
+  </div> <!-- viewContents_id end -->
+</div> <!-- container end -->
 
+
+<script th:src="@{/js/postsLatestList-fetch.js}"></script>
 </body>
 </html>

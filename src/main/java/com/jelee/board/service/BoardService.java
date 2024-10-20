@@ -13,6 +13,11 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
+	// board list all
+	public List<Board> getBoardListAllLimit20() {
+		return boardMapper.getBoardListAllLimit20();
+	}
+	
 	// community detail
 	public Board getBoardDetail(String category, Integer id) {
 		return boardMapper.getBoardById(category, id);

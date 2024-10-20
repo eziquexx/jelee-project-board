@@ -13,6 +13,7 @@
 		<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
 		<nav id="nav">
 		  <ul class="gnb">
+ 		  	<li><a th:href="@{/}">홈</a></li>
 		    <li><a th:href="@{/board/community}">자유게시판</a></li>
 		    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
 		    <li><a th:href="@{/board/study}">공부게시판</a></li>
@@ -25,16 +26,35 @@
 	</div>
 </header>
 
+
+<!-- container -->
 <div class="container">
-	<h1 th:text="${#strings.toUpperCase(category)} + ' List Page'">Detail Page</h1>
-	<h4 th:text="'Category: ' + ${category}"></h4>
-	<a th:href="@{/}">home</a>
+	<h1 th:text="${#strings.toUpperCase(category)} + ' 게시판 목록'">Detail Page</h1>
+	<h4 ></h4>
+	<div class="fetchStatus">
+	  <div id="loading_id">loading... 로딩중...</div>
+		<div id="error_id">error... 에러 발생...</div>
+  </div>
+  
+	<div id="viewContents_id">
+	  <div class="tableWrap">
+	    <h3 class="tableWrapTitle" th:text="'Category: ' + ${category} + ' 게시글'"></h3>
+	    <table class="table">
+	      <thead>
+	        <tr>
+	          <th>분류</th>
+	          <th>제목</th>
+	          <th>작성자</th>
+	          <th>작성일</th>
+	        </tr>
+	      </thead>
+	      <tbody id ="boardList_id">
+	      </tbody>
+	    </table>
+	  </div> <!-- tableWrap end -->
+  </div> <!-- viewContents_id end -->
 	
-	<h1 th:text="${category} + ' 게시판 목록'"></h1>
-	<div id="loading_id">loading... 로딩중...</div>
-	<div id="error_id">error... 에러 발생...</div>
-	<ul id="boardList_id"></ul>
-</div>
+</div> <!-- container end -->
 
 <script th:src="@{/js/boardList-fetch.js}"></script>
 </body>

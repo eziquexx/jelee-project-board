@@ -3,6 +3,14 @@
   PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jelee.board.mapper.BoardMapper">
+	<!-- board list all -->	
+	<select id="getBoardListAllLimit20" resultType="com.jelee.board.model.Board">
+		SELECT id, title, content, author_id, category, created_at, updated_at 
+		FROM board_db 
+		ORDER BY created_at DESC 
+		LIMIT 10;
+	</select>
+	
 	<select id="getBoardById" parameterType="map" resultType="com.jelee.board.model.Board">
 		SELECT id, title, content, author_id, category, created_at, updated_at FROM board_db WHERE category = #{category} AND id = #{id};
 	</select>

@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/**
+  all
+**/
 * {
   margin: 0;
   padding: 0;
@@ -13,6 +16,15 @@
   padding: 24px 20px;
 }
 
+table, th, td {
+  border-collapse: collapse;
+}
+
+
+
+/**
+  header style
+**/
 #header {
   width: 100%;
   background-color: salmon;
@@ -66,3 +78,52 @@
 #header a:hover {
   color: rgb(149, 59, 49);
 }
+
+
+
+/** 
+  table style 
+**/
+.tableWrap {
+  width: 100%;
+  padding: 40px 50px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  overflow: hidden;
+}
+.tableWrap .tableWrapTitle {
+  margin-bottom: 20px;
+}
+.tableWrap .table {
+  width: 100%;
+  /* border: 1px solid black; */
+  border-radius: 3px;
+  border-style: hidden;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px #a0a0a0;
+}
+.table, th, td {
+  border: 1px solid #a0a0a0;
+  background-color: #fff;
+  text-align: center;
+  line-height: 1.2;
+}
+.table th, .table td { padding: 10px; }
+.table th { background-color: #e4e4e4; }
+.table td { font-size: 15px;}
+.table td.postsTitle { 
+  text-align: left; 
+  text-indent: 4px;
+}
+.table td.postsTitle a {
+  color: #000;
+  text-decoration: none;
+}
+.table td.postsTitle a:hover {
+  color: rgb(211, 83, 69);
+}
+.tableWrap .table thead th { font-weight: 700; }
+.tableWrap .table thead th:nth-child(1) { width:12%; }
+.tableWrap .table thead th:nth-child(2) { width:64%; }
+.tableWrap .table thead th:nth-child(3) { width:12%; }
+.tableWrap .table thead th:nth-child(4) { width:12%; }

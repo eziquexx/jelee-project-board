@@ -10,9 +10,10 @@
 <!-- header -->
 <header id="header">
 	<div class="container">
-		<div class="logo"><a th:href="@{/board/}">dev.jelee</a></div>
+		<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
 		<nav id="nav">
 		  <ul class="gnb">
+		  	<li><a th:href="@{/}">홈</a></li>
 		    <li><a th:href="@{/board/community}">자유게시판</a></li>
 		    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
 		    <li><a th:href="@{/board/study}">공부게시판</a></li>
@@ -26,13 +27,12 @@
 </header>
 
 <div class="container">
-	<h1 th:text="${#strings.toUpperCase(category)} + ' Detail Page'">Detail Page</h1>
+	<h1 th:text="${#strings.toUpperCase(category)} + ' 상세 페이지'">Detail Page</h1>
 	<h4 th:text="'Category: ' + ${category}"></h4>
-	<div>
-		<div id="loading_id">loading...</div>
-		<div id="error_id">loading...</div>
+	<div class="fetchStatus">
+		<div id="loading_id">loading... 로딩중...</div>
+		<div id="error_id">error... 에러 발생...</div>
 	</div>
-	<a th:href="@{/}">home</a>
 	<a th:href="@{/board/{category}(category=${category})}" th:text="${category} + ' list'">Go to this category</a>
 	<ul id="posts"></ul>
 </div>

@@ -2,20 +2,23 @@
  * 
  */
 
-function boardListFetch() {
+const categoryGroup = ["community", "qna", "study"];
+
+
+function postsLatestListFetch() {
 	const loading = document.getElementById("loading_id");
 	const error = document.getElementById("error_id");
-	const boardList_id = document.getElementById("boardList_id");
 	const viewContents = document.getElementById("viewContents_id");
-	const urlPathName = window.location.pathname;
-	const category = urlPathName.replace("/board/", "");
-	console.log(category); //test
+	const postsLatestList = document.getElementById("postsLatestList_id");
 	
 	loading.style.display = "block";
 	error.style.display = "none";
 	viewContents.style.display = "none";
 	
-	fetch(`/api/board/${category}`, {
+//	boardList_id.innerHtml = "";
+
+
+	fetch(`/api/board`, {
 		method: "GET",
 		headers: {
 			"Accept": "application/json",
@@ -38,6 +41,7 @@ function boardListFetch() {
 			const date = new Date(list.createdAt);
 			const date_str = [date.getFullYear(), date.getMonth()+1, date.getDate()].join('/')
 			//console.log(date_str); // test
+			
 			const tr = document.createElement("tr");
 			tr.innerHTML = `
 				<td>${list.category}</td>
@@ -45,7 +49,8 @@ function boardListFetch() {
 				<td>${list.authorId}</td>
 				<td>${date_str}</td>
 			`;
-			boardList_id.appendChild(tr);
+			
+			postsLatestList.appendChild(tr);
 		})		
 	})
 	.catch(error => {
@@ -53,6 +58,8 @@ function boardListFetch() {
 		error.style.display = "block";
 		loading.style.display = "none";
 	})
-}
+	
+}	
 
-document.addEventListener("DOMContentLoaded", boardListFetch);
+
+document.addEventListener("DOMContentLoaded", postsLatestListFetch);
