@@ -14,7 +14,7 @@ registerForm.addEventListener("submit", function(e) {
 	}
 	console.log(user);
 	
-	fetch("/user/register", {
+	fetch("/user/signup", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -22,9 +22,11 @@ registerForm.addEventListener("submit", function(e) {
 		body: JSON.stringify(user),
 	})
 	.then(response => {
+		console.log(response);
 		if (response.ok) {
 			alert("회원가입이 되었습니다.");
 			registerForm.reset();
+			window.location.href="/";
 		} else {
 			alert("회원가입에 실패했습니다.");
 		}

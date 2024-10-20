@@ -19,7 +19,7 @@
 		  </ul>
 		  <div class="authBtn">
 		    <a th:href="@{/user/login}">log in</a>
-		    <a th:href="@{/user/register}">sign up</a>
+		    <a th:href="@{/user/signup}">sign up</a>
 		  </div>
 		</nav>
 	</div>
@@ -41,12 +41,12 @@
       </form>
     </div> <!-- loginWrap end -->
 	  <div id="userBtnGroup">
-	    <a th:href="@{/user/register}" class="btnRegister">회원가입</a>
+	    <a th:href="@{/user/signup}" class="btnRegister">회원가입</a>
 	  </div>
 	</div>  <!-- contentsWrap end -->
 </div> <!-- container end -->
 
 
-
+<script th:src="@{/js/userLogin.js}"></script>
 </body>
 </html>

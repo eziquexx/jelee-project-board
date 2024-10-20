@@ -19,7 +19,7 @@
 		  </ul>
 		  <div class="authBtn">
 		    <a th:href="@{/user/login}">log in</a>
-		    <a th:href="@{/user/register}">sign up</a>
+		    <a th:href="@{/user/signup}">sign up</a>
 		  </div>
 		</nav>
 	</div>
@@ -33,7 +33,7 @@
   <div class="contentsWrap">
     <h3 class="contentsTitle">회원가입</h3>
     <div id="registerWrap">
-      <form id="registerForm" th:action="@{/user/register}" method="post">
+      <form id="registerForm" th:action="@{/user/signup}" method="post">
         <div class="inputStyle">
           <input type="text" id="userId" name="userId" placeholder="아이디" required />
           <input type="password" id="userPw" name="userPw" placeholder="비밀번호" required />
@@ -45,7 +45,6 @@
 	</div>  <!-- contentsWrap end -->
 </div> <!-- container end -->
 
-
-<script th:src="@{/js/userRegister.js}"></script>
+<script th:src="@{/js/userSignup.js}"></script>
 </body>
 </html>

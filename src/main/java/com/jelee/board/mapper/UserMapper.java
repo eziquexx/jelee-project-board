@@ -8,4 +8,5 @@ import com.jelee.board.model.User;
 public interface UserMapper {
 
 	void userRegister(User user);
+	User getUserPwByUserId(String userId); 
 }

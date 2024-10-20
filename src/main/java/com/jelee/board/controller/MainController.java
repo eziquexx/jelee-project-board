@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jelee.board.model.User;
+
 @Controller
 @RequestMapping("/")
 public class MainController {
@@ -37,8 +39,9 @@ public class MainController {
 	}
 	
 	// user - register, add
-		@GetMapping("/user/register")
-		public String getUserRegister() {
-			return "user/userRegister";
-		}
+	@GetMapping("/user/signup")
+	public String getSignUp() {
+		return "user/userSignup";
+	}
+
 }

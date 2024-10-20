@@ -6,4 +6,7 @@
 	<insert id="userRegister" parameterType="com.jelee.board.model.User">
 		INSERT INTO user_db(user_id, user_pw, user_name) VALUES(#{userId}, #{userPw}, #{userName});
 	</insert>
+	<select id="getUserPwByUserId" resultType="com.jelee.board.model.User">
+		SELECT id, user_id, user_pw, user_name FROM user_db WHERE user_id = #{user_id};
+	</select>
 </mapper>
