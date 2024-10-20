@@ -9,9 +9,9 @@
   list-style: none;
   box-sizing: border-box;
 }
-
 .container {
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 24px 20px;
 }
@@ -19,8 +19,6 @@
 table, th, td {
   border-collapse: collapse;
 }
-
-
 
 /**
   header style
@@ -53,20 +51,21 @@ table, th, td {
 #header .container #nav .authBtn {
   display: flex; 
 }
-#header .container #nav .authBtn button {
+#header .container #nav .authBtn a {
   border: 0;
   padding: 10px 20px;
   border-radius: 4px;
   font-size: 14px;
+  line-height: 1;
   cursor: pointer;
   background-color: rgb(211, 83, 69);
   color: #fff;
   transition: background-color ease 0.3s;
 }
-#header .container #nav .authBtn button:hover {
+#header .container #nav .authBtn a:hover {
   background-color: rgb(157, 59, 48);
 }
-#header .container #nav .authBtn button:first-child {
+#header .container #nav .authBtn a:first-child {
   margin-right: 8px;
 }
 
@@ -127,3 +126,98 @@ table, th, td {
 .tableWrap .table thead th:nth-child(2) { width:64%; }
 .tableWrap .table thead th:nth-child(3) { width:12%; }
 .tableWrap .table thead th:nth-child(4) { width:12%; }
+
+
+
+/**
+  loginPage style
+**/
+.contentsWrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 40px 50px;
+  margin-top: 20px;
+  background-color: #f9f9f9;;
+  overflow: hidden;
+}
+.contentsWrap .contentsTitle {
+  margin-bottom: 20px;
+  text-align: center;
+}
+#loginWrap,
+#registerWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+#loginWrap #loginForm,
+#registerWrap #registerForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#loginWrap #loginForm .inputStyle input,
+#registerWrap #registerForm .inputStyle input {
+  width: 100%;
+  outline: none;
+  border: 1px solid #adadad;
+  padding: 16px 10px;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #303030;
+  box-sizing: border-box;
+}
+#loginWrap #loginForm .inputStyle input::placeholder,
+#registerWrap #registerForm .inputStyle input::placeholder {
+  color: #adadad;
+}
+#loginWrap #loginForm .inputStyle input:first-child,
+#registerWrap #registerForm .inputStyle input:first-child {
+  border-radius: 4px 4px 0 0;
+}
+#loginWrap #loginForm .inputStyle input:last-child,
+#registerWrap #registerForm .inputStyle input:last-child {
+  margin-top: -1px;
+  border-radius: 0 0 4px 4px;
+}
+#registerWrap #registerForm .inputStyle input:not(first-child) {
+	margin-top: -1px;
+}
+#loginWrap #loginForm .btnGroup,
+#registerWrap #registerForm .btnGroup {
+  margin-top: 20px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  font-size: 18px;
+  border-radius: 4px;
+  border: 0;
+  color: #fff;
+  background-color: salmon;
+  cursor: pointer;
+  transition: background-color ease 0.3s;
+}
+#loginWrap #loginForm .btnGroup:hover,
+#registerWrap #registerForm .btnGroup:hover {
+  background-color: rgb(220, 92, 78);
+}
+
+.contentsWrap #userBtnGroup {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.contentsWrap #userBtnGroup a {
+  color: #606060;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+}

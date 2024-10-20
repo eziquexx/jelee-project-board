@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원가입 페이지</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<body>
+<!-- header -->
+<header id="header">
+	<div class="container">
+		<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
+		<nav id="nav">
+		  <ul class="gnb">
+		  	<li><a th:href="@{/}">홈</a></li>
+		    <li><a th:href="@{/board/community}">자유게시판</a></li>
+		    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
+		    <li><a th:href="@{/board/study}">공부게시판</a></li>
+		  </ul>
+		  <div class="authBtn">
+		    <a th:href="@{/user/login}">log in</a>
+		    <a th:href="@{/user/register}">sign up</a>
+		  </div>
+		</nav>
+	</div>
+</header>
+
+
+<!-- container -->
+<div class="container">
+  <h1>회원가입 페이지</h1>
+
+  <div class="contentsWrap">
+    <h3 class="contentsTitle">회원가입</h3>
+    <div id="registerWrap">
+      <form id="registerForm" th:action="@{/user/register}" method="post">
+        <div class="inputStyle">
+          <input type="text" id="userId" name="userId" placeholder="아이디" required />
+          <input type="password" id="userPw" name="userPw" placeholder="비밀번호" required />
+          <input type="text" id="userName" name="userName" placeholder="이름" required />
+        </div>
+        <button type="submit" id="registerBtn" class="btnGroup">회원가입</button>
+      </form>
+    </div> <!-- loginWrap end -->
+	</div>  <!-- contentsWrap end -->
+</div> <!-- container end -->
+
+
+<script th:src="@{/js/userRegister.js}"></script>
+</body>
+</html>

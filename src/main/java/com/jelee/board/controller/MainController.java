@@ -1,16 +1,10 @@
 package com.jelee.board.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.jelee.board.model.Board;
-import com.jelee.board.model.Page;
-
 
 @Controller
 @RequestMapping("/")
@@ -35,4 +29,16 @@ public class MainController {
 		model.addAttribute("category", category);
 		return "board/boardDetail";
 	}
+	
+	// user - login
+	@GetMapping("/user/login")
+	public String getUserLogin() {
+		return "user/userLogin";
+	}
+	
+	// user - register, add
+		@GetMapping("/user/register")
+		public String getUserRegister() {
+			return "user/userRegister";
+		}
 }
