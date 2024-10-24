@@ -1,0 +1,10 @@
+CREATE TABLE users
+(
+    id       BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(50)  NOT NULL UNIQUE,
+    user_pw VARCHAR(100) NOT NULL,
+    user_name VARCHAR(100) NOT NULL,
+    user_email VARCHAR(100) NOT NULL,
+    enabled  BOOLEAN     DEFAULT TRUE,
+    role     VARCHAR(20) DEFAULT 'ROLE_USER'
+);
