@@ -25,7 +25,7 @@ public class UserTest {
 	void addUser() {
 		// 테스트용 사용자 생성
 		User user = new User();
-		user.setUserId("test1");
+		user.setUserId("test");
 		user.setUserPw(passwordEncoder.encode("1234"));
 		user.setUserName("지은");
 		user.setUserEmail("hello@gmail.com");

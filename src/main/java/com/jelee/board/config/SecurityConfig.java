@@ -21,10 +21,12 @@ public class SecurityConfig {
 		
 		http 
 			.formLogin(formLogin -> formLogin
-				.loginPage("/user/login")
+				.loginPage("/user/login") // 로그인 페이지 url
+				.loginProcessingUrl("/login") // 로그인 처리 url
 	            .usernameParameter("userId")   // 사용자 ID 이름 변경
 	            .passwordParameter("userPw")   // 비밀번호 이름 변경
-				.defaultSuccessUrl("/") // 로그인 성공시 이동 경로
+				.defaultSuccessUrl("/", true) // 로그인 성공시 이동 경로. true를 안 적어줬더니 로그인 페이지에 계속 머무는 현상이 발생.
+											  // 그래서 true를 추가해줬다.
 				.permitAll()
 			)
 			.authorizeHttpRequests(authorize -> authorize
