@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
@@ -19,14 +20,20 @@
 		    <li><a th:href="@{/board/study}">공부게시판</a></li>
 		  </ul>
 		  <div class="authBtn">
-		    <a th:href="@{/user/login}">log in</a>
-		    <a th:href="@{/user/signup}">sign up</a>
+		  	<div sec:authorize="!isAuthenticated()" class="authBtnStyle">
+			    <a th:href="@{/user/login}">log in</a>
+			    <a th:href="@{/user/signup}">sign up</a>
+		  	</div>
+		  	<div sec:authorize="isAuthenticated()" class="authBtnStyle">
+		  		<p class="loginUser">안녕하세요,<span sec:authentication="name"></span>님</p>
+			    <form th:action="@{/logout}" method="post">
+			        <input type="submit" value="log out" class="logoutBtn"/>
+			    </form>
+		  	</div>
 		  </div>
 		</nav>
 	</div>
 </header> <!-- header end -->
-
-
 
 <!-- container -->
 <div class="container">
@@ -35,7 +42,6 @@
 	  <div id="loading_id">loading... 로딩중...</div>
 		<div id="error_id">error... 에러 발생...</div>
   </div>
-	
 	
 	<div id="viewContents_id">
 	  <div class="tableWrap">

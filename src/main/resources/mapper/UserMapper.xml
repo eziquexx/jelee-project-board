@@ -12,4 +12,12 @@
 	<select id="getUserList" resultType="com.jelee.board.model.User">
 		SELECT id, user_id, user_pw, user_name, created_at, updated_at FROM user_db;
 	</select>
+	
+	<select id="findByUserId" resultType="com.jelee.board.model.User">
+		SELECT * FROM users WHERE user_id = #{userId}
+	</select>
+	
+	<insert id="save" parameterType="com.jelee.board.model.User">
+		INSERT INTO users (user_id, user_pw, user_name, user_email, enabled, role) VALUES(#{userId}, #{userPw}, #{userName}, #{userEmail}, #{enabled}, #{role});
+	</insert>
 </mapper>

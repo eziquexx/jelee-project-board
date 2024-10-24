@@ -8,8 +8,9 @@ import com.jelee.board.model.User;
 
 @Mapper
 public interface UserMapper {
-
-	void userRegister(User user);
-	User getUserPwByUserId(String userId); 
+	void save(User user);
+//	void userRegister(User user);
+	User findByUserId(String userId);
+//	User getUserPwByUserId(String userId); 
 	List<User> getUserList();
 }
