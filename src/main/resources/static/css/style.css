@@ -139,7 +139,7 @@ table, th, td {
   width: 100%;
   padding: 40px 50px;
   margin-top: 20px;
-  background-color: #f9f9f9;;
+  /* background-color: #f9f9f9; */
   overflow: hidden;
 }
 .contentsWrap .contentsTitle {

@@ -1,5 +1,6 @@
 package com.jelee.board.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -16,6 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jelee.board.model.User;
 import com.jelee.board.service.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/user")
@@ -50,4 +54,12 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "사용자를 찾을 수 없습니다."));
 		}
 	}
+	
+	
+	// user - list
+	@GetMapping("/list")
+	public List<User> getUserList() {
+		return userService.getUserList();
+	}
+	
 }
