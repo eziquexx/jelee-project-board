@@ -45,34 +45,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div class="container">
   <h1>회원가입 페이지</h1>
 
-  <div class="contentsWrap">
-    <h3 class="contentsTitle">회원가입</h3>
-    <!-- 에러 메시지 표시 -->
-		<div id="errorMessage"></div>
-    <div id="registerWrap">
-      <form id="registerForm" th:action="@{/user/signup}" method="post">
-        <div class="inputStyle">
-          <input type="text" id="userId" name="userId" placeholder="아이디" required />
-          <input type="password" id="userPw" name="userPw" placeholder="비밀번호" required />
-          <input type="text" id="userName" name="userName" placeholder="이름" required />
-          <input type="email" id="userEmail" name="userEmail" placeholder="이메일" required />
-        </div>
-        <button type="submit" id="registerBtn" class="btnGroup">회원가입</button>
-      </form>
-    </div> <!-- loginWrap end -->
+  <div class="contentsWrap signupSucess">
+    <h3 class="contentsTitle">회원가입 성공</h3>
+    <p>회원가입에 성공하였습니다.</p>
+    <div>
+    	<a th:href="@{/user/login}">로그인 페이지로 이동하기</a>
+    </div>
 	</div>  <!-- contentsWrap end -->
 </div> <!-- container end -->
 
-<script th:inline="javascript">
-	// URL 쿼리 파라미터를 가져와서 에러 메시지를 표시
-	const urlParams = new URLSearchParams(window.location.search);
-	const errorMessage = urlParams.get('error');
-	
-	if (errorMessage) {
-	    document.getElementById("errorMessage").innerText = errorMessage; // 에러 메시지 표시
-	}
-</script>
-
-<!-- <script th:src="@{/js/userSignup.js}"></script> -->
 </body>
 </html>

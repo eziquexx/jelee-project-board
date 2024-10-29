@@ -1,55 +1,57 @@
 package com.jelee.board.controller;
 
-import java.util.List;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jelee.board.mapper.UserMapper;
 import com.jelee.board.model.User;
 import com.jelee.board.service.UserService;
 
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-	@Autowired
-	private UserService userService;
 	
-	// Bcrypt.checkpw() 메서드를 통해 사용자가 입력한 pw와 DB에 저장된 PW 비교
-//	private boolean checkPw(String userPw, String memberPw) {
-//		return BCrypt.checkpw(userPw, memberPw);
-//	}
+	private final UserMapper userMapper;
+	private final UserService userService;
 	
-	// user - signup
-//	@PostMapping("/signup")
-//	public void userSignUp(@RequestBody User user) {
-//		System.out.println(user.toString());
-//		userService.userSignUp(user);
-//	}
-	
-	// user - login
-//	@PostMapping("/login")
-//	public ResponseEntity<?> userLogin(@RequestBody User user) {
-//		User member = userService.getUserPw(user.getUserId());
-//		if (member != null) {
-//			if (checkPw(user.getUserPw(), member.getUserPw())) {
-//				return ResponseEntity.ok().body(Map.of("message", "로그인 성공", "user", member));
-//			} else {
-//				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "비밀번호가 일치하지 않습니다."));
-//			}
-//		} else {
-//			// 사용자를 찾을 수 없습니다.
-//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "사용자를 찾을 수 없습니다."));
-//		}
-//	}
-	
-	
-	// user - list
-	@GetMapping("/list")
-	public List<User> getUserList() {
-		return userService.getUserList();
+	@PostMapping("/login")
+	public void login(@ModelAttribute User user) {
+		log.info(user.getUserId());
+		User member = userMapper.findByUserId(user.getUserId());
+		
+		if (user.getUserPw().equals(member.getUserPw())) {
+			log.info("회원");
+		} else {
+			log.info("비회원");
+		}
 	}
 	
+	@PostMapping("/signup")
+	public void signup(@ModelAttribute User user, HttpServletResponse response) throws IOException {
+		log.info(user.getUserId());
+		
+		boolean success = userService.registerUser(user);
+		
+		if (success) {
+			response.sendRedirect("/user/signup/success");
+		} else {
+			String errorMessage = URLEncoder.encode("회원가입 실패. 아이디 중복. 다시 시도 해주세요.", StandardCharsets.UTF_8.toString());
+			response.sendRedirect("/user/signup?error=" + errorMessage); // 인코딩된 메시지 전달
+		}
+		
+	}
 }
