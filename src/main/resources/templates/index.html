@@ -10,16 +10,8 @@
 
 <!-- header -->
 <header id="header">
-	<div class="container">
-		<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
-		<nav id="nav">
-		  <ul class="gnb">
-		  	<li><a th:href="@{/}">홈</a></li>
-		    <li><a th:href="@{/board/community}">자유게시판</a></li>
-		    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
-		    <li><a th:href="@{/board/study}">공부게시판</a></li>
-		  </ul>
-		  <div class="authBtn">
+	<div class="container authContainer">
+		<div class="authBtn">
 		  	<div sec:authorize="!isAuthenticated()" class="authBtnStyle">
 			    <a th:href="@{/user/login}">log in</a>
 			    <a th:href="@{/user/signup}">sign up</a>
@@ -31,6 +23,16 @@
 			    </form>
 		  	</div>
 		  </div>
+	</div>
+	<div class="container">
+		<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
+		<nav id="nav">
+		  <ul class="gnb">
+		  	<li><a th:href="@{/}">홈</a></li>
+		    <li><a th:href="@{/board/community}">자유게시판</a></li>
+		    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
+		    <li><a th:href="@{/board/study}">공부게시판</a></li>
+		  </ul>
 		</nav>
 	</div>
 </header> <!-- header end -->
