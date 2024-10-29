@@ -1,6 +1,7 @@
 package com.jelee.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,11 +20,11 @@ public class UserController {
 	UserMapper userMapper;
 	
 	@PostMapping("/login")
-	public void login(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw) {
-		log.info(userId);
-		User member = userMapper.findByUserId(userId);
+	public void login(@ModelAttribute User user) {
+		log.info(user.toString());
+		User member = userMapper.findByUserId(user.getUserId());
 		
-		if (userPw.equals(member.getUserPw())) {
+		if (user.getUserPw().equals(member.getUserPw())) {
 			log.info("회원");
 		} else {
 			log.info("비회원");
