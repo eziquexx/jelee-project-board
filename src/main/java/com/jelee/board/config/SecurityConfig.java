@@ -24,11 +24,14 @@ public class SecurityConfig {
 		http
 			.formLogin(formLogin -> formLogin
 					.loginPage("/user/login")
-					.defaultSuccessUrl("/")
+					.defaultSuccessUrl("/", true)
 					.permitAll()
 					)
 			.authorizeHttpRequests(authorize -> authorize
-					.requestMatchers("/", "/home", "/css/**", "/js/**", "/api/**", "/board/**")
+					.requestMatchers("/", "/home", 
+							"/user/login", "/user/signup", "/user/signup/success",
+							"/css/**", "/js/**", 
+							"/api/**", "/board/**")
 					.permitAll()
 					.anyRequest()
 					.authenticated()

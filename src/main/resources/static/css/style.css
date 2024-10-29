@@ -27,6 +27,12 @@ table, th, td {
   width: 100%;
   background-color: salmon;
 }
+#header .headerGroup {
+	width: 100%;
+}
+#header .headerGroupAuth {
+	background-color: #d4675a;
+}
 #header .container {
   display: flex;
   justify-content: space-between;
@@ -35,7 +41,6 @@ table, th, td {
 	justify-content: right;
  	padding-top: 9px;
   padding-bottom: 9px;
-  background-color: #d4675a;
 }
 #header .container .logo {
   font-size: 20px;
@@ -227,6 +232,28 @@ table, th, td {
   background-color: rgb(220, 92, 78);
 }
 
+
+/* signupSucess */
+.signupSucess {
+	text-align: center;
+}
+.signupSucess p {
+	margin-top: 20px;
+}
+.signupSucess a {
+	margin-top: 30px;
+	display: block;
+	color: #2572ee;
+}
+
+/* signupFail */
+#errorMessage {
+   text-align: center;
+   margin-bottom: 14px;
+   color: #d61919;
+}
+
+/* contentsWrap */
 .contentsWrap #userBtnGroup {
   display: flex;
   justify-content: center;

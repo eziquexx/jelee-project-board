@@ -42,5 +42,10 @@ public class MainController {
 	public String signUpPage() {
 		return "user/userSignup";
 	}
+	// user - register, add
+	@GetMapping("/user/signup/success")
+	public String signupSucessPage() {
+		return "user/successSignup";
+	}
 
 }
