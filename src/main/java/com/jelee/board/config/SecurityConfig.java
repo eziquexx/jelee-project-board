@@ -24,6 +24,8 @@ public class SecurityConfig {
 		http
 			.formLogin(formLogin -> formLogin
 					.loginPage("/user/login")
+					.usernameParameter("userId")  // userId를 username으로 설정
+	                .passwordParameter("userPw")  // password는 userPw로 설정
 					.defaultSuccessUrl("/", true)
 					.permitAll()
 					)

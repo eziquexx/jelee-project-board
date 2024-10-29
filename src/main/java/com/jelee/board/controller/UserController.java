@@ -30,7 +30,7 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public void login(@ModelAttribute User user) {
-		log.info(user.toString());
+		log.info(user.getUserId());
 		User member = userMapper.findByUserId(user.getUserId());
 		
 		if (user.getUserPw().equals(member.getUserPw())) {

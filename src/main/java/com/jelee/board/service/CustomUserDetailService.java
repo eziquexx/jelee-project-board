@@ -14,7 +14,9 @@ import com.jelee.board.mapper.UserMapper;
 import com.jelee.board.model.User;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
@@ -24,6 +26,7 @@ public class CustomUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		User user = userMapper.findByUserId(userId);
+		
 		
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with userId: " + userId);	

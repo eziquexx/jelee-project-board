@@ -30,7 +30,7 @@ public class UserTest {
 		user.setUserName("홍씨");
 		user.setUserEmail("hong@gmail.com");
 		user.setEnabled(true);
-		user.setRole("ROLE_USER");
+//		user.setRole("ROLE_USER");
 		
 		log.info("암호화 하지 않음", user.getUserPw());
 		
