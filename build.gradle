@@ -32,8 +32,8 @@ dependencies {
   
   //implementation 'org.mindrot:jbcrypt:0.4'
   
-  //implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-  //implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
   testImplementation 'org.springframework.security:spring-security-test'
   
 	// 테스트에서도 lombok 사용
