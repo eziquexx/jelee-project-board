@@ -44,9 +44,9 @@ public class UserController {
 	public void signup(@ModelAttribute User user, HttpServletResponse response) throws IOException {
 		log.info(user.getUserId());
 		
-		boolean sucess = userService.registerUser(user);
+		boolean success = userService.registerUser(user);
 		
-		if (sucess) {
+		if (success) {
 			response.sendRedirect("/user/signup/success");
 		} else {
 			String errorMessage = URLEncoder.encode("회원가입 실패. 아이디 중복. 다시 시도 해주세요.", StandardCharsets.UTF_8.toString());
