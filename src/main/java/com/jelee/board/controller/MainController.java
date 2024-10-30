@@ -1,5 +1,7 @@
 package com.jelee.board.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +48,12 @@ public class MainController {
 	@GetMapping("/user/signup/success")
 	public String signupSucessPage() {
 		return "user/successSignup";
+	}
+	
+	// user list
+	@GetMapping("/users")
+	public String userList() {
+		return "user/userList";
 	}
 
 }

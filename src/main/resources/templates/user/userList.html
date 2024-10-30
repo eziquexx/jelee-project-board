@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelead.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>회원 목록 페이지</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<body>
+<!-- header -->
+<header id="header">
+	<div class="headerGroup headerGroupAuth">
+		<div class="container authContainer">
+			<div class="authBtn">
+			  	<div sec:authorize="!isAuthenticated()" class="authBtnStyle">
+				    <a th:href="@{/user/login}">log in</a>
+				    <a th:href="@{/user/signup}">sign up</a>
+			  	</div>
+			  	<div sec:authorize="isAuthenticated()" class="authBtnStyle">
+			  		<p class="loginUser">안녕하세요, <span sec:authentication="name"></span>님</p>
+				    <form th:action="@{/logout}" method="post">
+				        <input type="submit" value="log out" class="logoutBtn"/>
+				    </form>
+			  	</div>
+			  </div>
+		</div>
+	</div>
+	<div class="headerGroup">
+		<div class="container">
+			<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
+			<nav id="nav">
+			  <ul class="gnb">
+			  	<li><a th:href="@{/}">홈</a></li>
+			    <li><a th:href="@{/board/community}">자유게시판</a></li>
+			    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
+			    <li><a th:href="@{/board/study}">공부게시판</a></li>
+			  </ul>
+			</nav>
+		</div>
+	</div>
+</header> <!-- header end -->
+
+<!-- container -->
+<div class="container">
+  <h1>로그인 페이지</h1>
+
+  <div class="contentsWrap">
+  </div>
+</div>
+</body>
+</html>

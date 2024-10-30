@@ -25,22 +25,22 @@
 			      u.enabled,
 			      r.id as role_id,
 			      r.name as role_name
-		FROM users u
-		        LEFT JOIN user_roles ur ON u.id = ur.user_id
-		        LEFT JOIN roles r ON ur.role_id = r.id
+		FROM nusers u
+		        LEFT JOIN nuser_roles ur ON u.id = ur.user_id
+		        LEFT JOIN nroles r ON ur.role_id = r.id
 		WHERE u.user_id = #{userId};
 	</select>
 
 	<insert id="save" parameterType="com.jelee.board.model.User" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO users (user_id, user_pw, user_name, user_email, enabled) 
+		INSERT INTO nusers (user_id, user_pw, user_name, user_email, enabled) 
 		VALUES (#{userId}, #{userPw}, #{userName}, #{userEmail}, #{enabled});
 	</insert>
 	<insert id="insertUserRole">
-		INSERT INTO user_roles (user_id, role_id) 
+		INSERT INTO nuser_roles (user_id, role_id) 
 		VALUES (#{userId}, #{roleId});
 	</insert>
 	
 	<select id="checkUserId" resultType="Integer">
-		SELECT COUNT(*) FROM users WHERE user_id = #{userId};
+		SELECT COUNT(*) FROM nusers WHERE user_id = #{userId};
 	</select>
 </mapper>
