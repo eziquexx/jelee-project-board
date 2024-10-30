@@ -14,7 +14,7 @@ registerForm.addEventListener("submit", function(e) {
 	}
 	console.log(user);
 	
-	fetch("/user/signup", {
+	fetch("/api/user/signup", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

@@ -3,9 +3,11 @@ package com.jelee.board.controller;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 	
 	private final UserMapper userMapper;
@@ -52,6 +54,10 @@ public class UserController {
 			String errorMessage = URLEncoder.encode("회원가입 실패. 아이디 중복. 다시 시도 해주세요.", StandardCharsets.UTF_8.toString());
 			response.sendRedirect("/user/signup?error=" + errorMessage); // 인코딩된 메시지 전달
 		}
-		
+	}
+	
+	@GetMapping("/list")
+	public List<User> getUserList() {
+		return userService.getUserList();
 	}
 }

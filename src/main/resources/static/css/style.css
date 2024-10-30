@@ -89,7 +89,9 @@ table, th, td {
 	margin-right: 10px;
 	color: rgb(149, 59, 49);
 }
-
+#header .container .authBtn .authBtnStyle .adminBtn {
+	margin-right: 6px;
+}
 
 #header a {
   color: #fff;
@@ -149,7 +151,10 @@ table, th, td {
 .tableWrap .table thead th:nth-child(3) { width:12%; }
 .tableWrap .table thead th:nth-child(4) { width:12%; }
 
-
+/** 
+  userListTable style 
+**/
+.userListTable .tableWrap .table thead th { width: auto; }
 
 /**
   loginPage style

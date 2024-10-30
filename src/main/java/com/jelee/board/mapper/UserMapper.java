@@ -1,5 +1,7 @@
 package com.jelee.board.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,4 +18,5 @@ public interface UserMapper {
 	// mapper 인터페이스에서 해당 메서드를 Integer 타입으로 변경.
 	Integer checkUserId(String userId);
 	void insertUserRole(@Param("userId") Long userId, @Param("roleId") Long roleId);
+	List<User> getUserList();
 }

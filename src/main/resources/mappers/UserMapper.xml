@@ -43,4 +43,18 @@
 	<select id="checkUserId" resultType="Integer">
 		SELECT COUNT(*) FROM users WHERE user_id = #{userId};
 	</select>
+	
+	<select id="getUserList" resultMap="UserWithRoles">
+		SELECT u.id as uid, 
+					 u.user_id, 
+					 u.user_pw, 
+					 u.user_name, 
+					 u.user_email, 
+					 u.enabled, 
+					 r.id as role_id, 
+					 r.name as role_name
+		FROM users u
+		LEFT JOIN user_roles ur ON u.id = ur.user_id
+		LEFT JOIN roles r ON ur.role_id = r.id
+	</select>
 </mapper>

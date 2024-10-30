@@ -3,9 +3,9 @@
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>회원가입 페이지</title>
-</head>
+<title>회원 관리 페이지</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
 <body>
 
 <!-- header -->
@@ -42,39 +42,38 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	</div>
 </header> <!-- header end -->
 
-
 <!-- container -->
 <div class="container">
-  <h1>회원가입 페이지</h1>
-
-  <div class="contentsWrap">
-    <h3 class="contentsTitle">회원가입</h3>
-    <!-- 에러 메시지 표시 -->
-		<div id="errorMessage"></div>
-    <div id="registerWrap">
-      <form id="registerForm" th:action="@{/user/signup}" method="post">
-        <div class="inputStyle">
-          <input type="text" id="userId" name="userId" placeholder="아이디" required />
-          <input type="password" id="userPw" name="userPw" placeholder="비밀번호" required />
-          <input type="text" id="userName" name="userName" placeholder="이름" required />
-          <input type="email" id="userEmail" name="userEmail" placeholder="이메일" required />
-        </div>
-        <button type="submit" id="registerBtn" class="btnGroup">회원가입</button>
-      </form>
-    </div> <!-- loginWrap end -->
-	</div>  <!-- contentsWrap end -->
+  <h1>회원 관리 페이지</h1>
+ 	<div class="fetchStatus">
+	  <div id="loading_id">loading... 로딩중...</div>
+		<div id="error_id">error... 에러 발생...</div>
+  </div>
+  
+  <div id="viewContents_id" class="userListTable">
+  	<div class="tableWrap">
+	    <h3 class="tableWrapTitle">회원 목록</h3>
+	    <table class="table">
+	      <thead>
+	        <tr>
+	          <th>번호</th>
+	          <th>아이디</th>
+	          <th>이름</th>
+	          <th>이메일</th>
+	          <th>권한</th>
+	          <th>상태</th>
+	          <th>관리
+	          </th>
+	        </tr>
+	      </thead>
+	      <tbody id ="boardList_id">
+	      </tbody>
+	    </table>
+	  </div> <!-- tableWrap end -->
+  </div> <!-- container end -->
+  
 </div> <!-- container end -->
 
-<script th:inline="javascript">
-	// URL 쿼리 파라미터를 가져와서 에러 메시지를 표시
-	const urlParams = new URLSearchParams(window.location.search);
-	const errorMessage = urlParams.get('error');
-	
-	if (errorMessage) {
-	    document.getElementById("errorMessage").innerText = errorMessage; // 에러 메시지 표시
-	}
-</script>
-
-<!-- <script th:src="@{/js/userSignup.js}"></script> -->
+<script th:src="@{/js/userList-fetch.js}"></script>
 </body>
 </html>

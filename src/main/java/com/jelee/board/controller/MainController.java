@@ -47,5 +47,11 @@ public class MainController {
 	public String signupSucessPage() {
 		return "user/successSignup";
 	}
+	
+	// user - list, admin
+	@GetMapping("/user/list")
+	public String userListPage() {
+		return "user/userList";
+	}
 
 }

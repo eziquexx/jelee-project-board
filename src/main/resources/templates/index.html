@@ -19,6 +19,7 @@
 			  	</div>
 			  	<div sec:authorize="isAuthenticated()" class="authBtnStyle">
 			  		<p class="loginUser">안녕하세요,<span sec:authentication="name"></span>님</p>
+				    <a sec:authorize="hasRole('ADMIN')" th:href="@{/user/list}" class="adminBtn">사용자 관리</a>
 				    <form th:action="@{/logout}" method="post">
 				        <input type="submit" value="log out" class="logoutBtn"/>
 				    </form>
