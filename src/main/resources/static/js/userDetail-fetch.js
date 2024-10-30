@@ -5,12 +5,17 @@ function userListFetch() {
 	const error = document.getElementById("error_id");
 	const viewContents = document.getElementById("viewContents_id");
 	const boardList_id = document.getElementById("boardList_id");
-	
+	const urlPathName = window.location.pathname;
+	const urlReplace = urlPathName.replace("/user/","");
+	const urlSplit = urlReplace.split("/");
+	const userId = urlSplit[0];
+	const roleId = document.getElementById("roleId");
+		
 	loading.style.display = "block";
 	error.style.display = "none";
 	viewContents.style.display = "none";
 	
-	fetch (`/api/user/list`, {
+	fetch (`/api/user/${userId}/roles`, {
 		method: "GET",
 		heards: {
 			"Accept": "application/json",
@@ -24,25 +29,28 @@ function userListFetch() {
 		return response.json();
 	})
 	.then(data => {
+		console.log(data);
 		loading.style.display = "none";
 		viewContents.style.display = "block";
-		
-		data.forEach(user => {
-			console.log(user);
-			const tr = document.createElement("tr");
-			tr.innerHTML = `
-				<td>${user.id}</td>
-				<td>${user.userId}</td>
-				<td>${user.userName}</td>
-				<td>${user.userEmail}</td>
-				<td>${user.roles[0].name}</td>
-				<td>${user.enabled}</td>
-				<td>
-					<a href="/user/${user.id}/roles?(id=${user.id})">권한관리</a>
-				</td>
+		const allRoles = data.allRoles;
+		if(data.roles.length > 0) {
+			for (let i = 0; i < data.roles.length; i ++) {
+				const tr = document.createElement("tr");
+				tr.innerHTML = `
+					<td>${data.roles[i].id}</td>
+					<td>${data.roles[i].name}</td>
 				`;
 				boardList_id.appendChild(tr);
-		})
+			}
+		}
+		
+		allRoles.forEach(role => {
+			const option = document.createElement("option");
+			option.value = role.id;
+			option.innerHTML = role.name;
+			
+			roleId.appendChild(option);
+		});
 	})
 	.catch(error => {
 		console.error("Error: ", error);
@@ -50,5 +58,6 @@ function userListFetch() {
 		loading.style.display = "none";
 	})
 }
+
 
 document.addEventListener("DOMContentLoaded", userListFetch);

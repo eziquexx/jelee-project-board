@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymelead.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>회원 관리 페이지</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- header -->
+<header id="header">
+	<div class="headerGroup headerGroupAuth">
+		<div class="container authContainer">
+			<div class="authBtn">
+			  	<div sec:authorize="!isAuthenticated()" class="authBtnStyle">
+				    <a th:href="@{/user/login}">log in</a>
+				    <a th:href="@{/user/signup}">sign up</a>
+			  	</div>
+			  	<div sec:authorize="isAuthenticated()" class="authBtnStyle">
+			  		<p class="loginUser">안녕하세요,<span sec:authentication="name"></span>님</p>
+				    <a sec:authorize="hasRole('ADMIN')" th:href="@{/user/list}" class="adminBtn">사용자 관리</a>
+				    <form th:action="@{/logout}" method="post">
+				        <input type="submit" value="log out" class="logoutBtn"/>
+				    </form>
+			  	</div>
+			  </div>
+		</div>
+	</div>
+	<div class="headerGroup">
+		<div class="container">
+			<div class="logo"><a th:href="@{/}">dev.jelee</a></div>
+			<nav id="nav">
+			  <ul class="gnb">
+			  	<li><a th:href="@{/}">홈</a></li>
+			    <li><a th:href="@{/board/community}">자유게시판</a></li>
+			    <li><a th:href="@{/board/qna}">Q&A게시판</a></li>
+			    <li><a th:href="@{/board/study}">공부게시판</a></li>
+			  </ul>
+			</nav>
+		</div>
+	</div>
+</header> <!-- header end -->
+
+<!-- container -->
+<div class="container">
+  <h1>회원 관리 - 권한 페이지</h1>
+ 	<div class="fetchStatus">
+	  <div id="loading_id">loading... 로딩중...</div>
+		<div id="error_id">error... 에러 발생...</div>
+  </div>
+  
+  <div id="viewContents_id" class="userListTable">
+  	<div class="tableWrap">
+	    <h3 class="tableWrapTitle">회원 권한</h3>
+	    <table class="table">
+	      <thead>
+	        <tr>
+	          <th>권한 ID</th>
+	          <th>권한명</th>
+	        </tr>
+	      </thead>
+	      <tbody id ="boardList_id">
+	      </tbody>
+	    </table> <!-- table end -->
+	  </div> <!-- tableWrap end -->
+	  
+	  <div class="tableWrap">
+	  	<h3 class="tableWrapTitle">권한 추가</h3>
+	  	<form th:action="@{/api/user/{userId}/role/add(userId=${userId})}" method="post">
+		  	<label for="roleId">
+		  		<select name="roleId" id="roleId">
+		  			<option>-- 선택 --</option>
+		  		</select>
+		  	</label>
+		  	<button type="submit">권한 추가</button>
+	    </form>
+	  </div>
+  </div> <!-- container end -->
+  
+</div> <!-- container end -->
+
+<script th:src="@{/js/userDetail-fetch.js}"></script>
+</body>
+</html>

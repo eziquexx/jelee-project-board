@@ -19,4 +19,9 @@ public interface UserMapper {
 	Integer checkUserId(String userId);
 	void insertUserRole(@Param("userId") Long userId, @Param("roleId") Long roleId);
 	List<User> getUserList();
+	
+	User findById(Long id);
+	List<Role> findRolesByUserId(Long userId);
+	List<Role> getAllRoles();
+	
 }

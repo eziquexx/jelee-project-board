@@ -57,4 +57,19 @@
 		LEFT JOIN user_roles ur ON u.id = ur.user_id
 		LEFT JOIN roles r ON ur.role_id = r.id
 	</select>
+	
+	<select id="findRolesByUserId" resultType="com.jelee.board.model.Role">
+		SELECT r.id, r.name
+    FROM roles r
+             JOIN user_roles ur ON r.id = ur.role_id
+    WHERE ur.user_id = #{userId}
+	</select>
+	
+	<select id="findById" resultType="com.jelee.board.model.User">
+		SELECT * FROM users WHERE id = #{id};
+	</select>
+	
+	<select id="getAllRoles" resultType="com.jelee.board.model.Role">
+		SELECT * FROM roles ORDER BY name;
+	</select>
 </mapper>

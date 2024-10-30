@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jelee.board.model.User;
+
 
 @Controller
 @RequestMapping("/")
@@ -52,6 +54,16 @@ public class MainController {
 	@GetMapping("/user/list")
 	public String userListPage() {
 		return "user/userList";
+	}
+	
+	// user - detail, admin
+	@GetMapping("/user/{userId}/roles")
+	public String userRoles(@PathVariable("userId") Long userId, Model model) {
+		User user = new User();
+		user.setId(userId);
+		
+		model.addAttribute("userId", userId);
+		return "user/userRoles";
 	}
 
 }

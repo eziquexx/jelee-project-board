@@ -1,19 +1,26 @@
 package com.jelee.board.controller;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jelee.board.mapper.UserMapper;
+import com.jelee.board.model.Role;
 import com.jelee.board.model.User;
 import com.jelee.board.service.UserService;
 
@@ -59,5 +66,48 @@ public class UserController {
 	@GetMapping("/list")
 	public List<User> getUserList() {
 		return userService.getUserList();
+	}
+	
+	@GetMapping("/{userId}/roles")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> userRoles(@PathVariable("userId") Long userId) {
+		List<Role> roles = userMapper.findRolesByUserId(userId);
+		String user = userMapper.findById(userId).getUserId();
+		List<Role> allRoles = userMapper.getAllRoles();
+		
+		Map<String, Object> response = new HashMap<>();
+		response.put("allRoles", allRoles);
+		response.put("roles", roles);
+		response.put("user", user);
+		response.put("userId", userId);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	@PostMapping("/{userId}/role/add")
+	public ResponseEntity<Map<String, Object>> insertUserRole(@PathVariable("userId") Long userId, 
+			@RequestParam("roleId") Long roleId) {
+		
+//		userMapper.insertUserRole(userId, roleId);
+		
+		/*
+		 * // 추가하고 난 다음의 최종 데이터 가져오기 List<Role> addedRole =
+		 * userMapper.findRolesByUserId(userId);
+		 * 
+		 * // 모든 역할 가져옥 List<Role> allRoles = userMapper.getAllRoles();
+		 * 
+		 * Map<String, Object> response = new HashMap<>(); response.put("role",
+		 * addedRole); response.put("allRoles", allRoles);
+		 */
+		
+	    
+	    userMapper.insertUserRole(userId, roleId);
+	    
+	    String redirectUrl = "/user/" + userId + "/roles";
+	    System.out.println("Redirecting to: " + redirectUrl);
+	    
+	    return ResponseEntity.status(HttpStatus.FOUND)
+	            .location(URI.create(redirectUrl))
+	            .build();
 	}
 }
